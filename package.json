@@ -1,0 +1,34 @@
+{
+  "name": "milan-tips-mcp",
+  "version": "0.1.0",
+  "description": "MCP server exposing Milan Jovanović's .NET / architecture tips as a searchable local corpus.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/server.js",
+    "ingest:index": "tsx scripts/fetch-index.ts",
+    "ingest:fetch": "tsx scripts/fetch-posts.ts",
+    "ingest:parse": "tsx scripts/ingest.ts",
+    "ingest": "npm run ingest:index && npm run ingest:fetch && npm run ingest:parse",
+    "smoke": "tsx scripts/smoke-test.ts",
+    "mcp-test": "npm run build && tsx scripts/mcp-test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "better-sqlite3": "^11.3.0",
+    "cheerio": "^1.0.0",
+    "turndown": "^7.2.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.5.5",
+    "@types/turndown": "^5.0.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  }
+}
